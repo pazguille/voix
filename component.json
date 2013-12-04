@@ -3,12 +3,21 @@
   "repo": "pazguille/voix",
   "description": "A JavaScript library to add voice commands to your sites, apps or games.",
   "version": "0.0.1",
-  "keywords": [],
+  "author": "Guille Paz <guille87paz@gmail.com>",
+  "twitter": "@pazguille",
+  "keywords": [
+    "voice",
+    "speech",
+    "commands",
+    "control",
+    "recognition",
+    "microphone"
+  ],
   "dependencies": {},
-  "development": {},
+  "development": {
+    "bestander/jasmine": "*"
+  },
   "license": "MIT",
-  "main": "index.js",
-  "scripts": [
-    "index.js"
-  ]
+  "main": "voix.js",
+  "scripts": ["voix.js"]
 }
