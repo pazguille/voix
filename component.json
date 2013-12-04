@@ -1,0 +1,14 @@
+{
+  "name": "voix",
+  "repo": "pazguille/voix",
+  "description": "A JavaScript library to add voice commands to your sites, apps or games.",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ]
+}
