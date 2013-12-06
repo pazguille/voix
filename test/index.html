@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Voix JS Component</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+    </head>
+    <body>
+        <h1>Voix.js</h1>
+        <div id="player"></div>
+        <script src="js/voix.js"></script>
+        <script>
+
+            //Load player api asynchronously.
+            var tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
+
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            var player;
+
+            function onYouTubePlayerAPIReady() {
+                player = new YT.Player('player', {
+                    'height': '390',
+                    'width': '640',
+                    'videoId': 'ukCyt47eIkA',
+                    'playerVars': {
+                        'controls': 0,
+                        'listType': 'playlist',
+                        'list':'PL7C00E83736FB02C3'
+                    },
+                    'events': {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            }
+
+            function onPlayerReady() {
+                player.mute();
+            }
+
+            var done = false;
+
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.PLAYING && !done) {
+                    done = true;
+                }
+            }
+
+            function stopVideo() {
+                player.stopVideo();
+            }
+
+            voix
+                .setCommand('iniciar', function () {
+                    player.playVideo();
+                })
+                .setCommand('siguiente', function () {
+                    player.nextVideo();
+                })
+                .setCommand('anterior', function () {
+                    player.previousVideo()
+                })
+                .setCommand('detener', function () {
+                    player.pauseVideo()
+                });
+        </script>
+    </body>
+</html>
