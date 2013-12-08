@@ -162,27 +162,6 @@
     };
 
     /**
-     * Returns the current language of the speech.
-     * @memberof! Voix.prototype
-     * @function
-     * @returns {voix}
-     */
-    Voix.prototype.getLanguage = function () {
-        return this._recognition.lang;
-    };
-
-    /**
-     * Sets the language of the speech.
-     * @memberof! Voix.prototype
-     * @function
-     * @param {String} [lang] - A given language.
-     * @returns {voix}
-     */
-    Voix.prototype.setLanguage = function (lang) {
-        this._recognition.lang = lang;
-    };
-
-    /**
      * Starts the recognition.
      * @memberof! Voix.prototype
      * @function

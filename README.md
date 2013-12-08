@@ -15,10 +15,21 @@ You can use the standalone version:
 ```
 
 ## How-to
-WIP
+Create a new instance of Voix.
+```js
+var voix = new Voix('en-US');
+```
 
 ## API
-### voix.setCommand(command, listener)
+### Voix(lang)
+Create a new instance of `Voix`.
+- `lang`: A given language.
+
+```js
+var voix = new Voix('en-US');
+```
+
+### Voix#setCommand(command, listener)
 Sets a new `command` with a `listener` to the collection.
 - `command` - A given `command`.
 - `listener` - A given `listener`.
@@ -27,50 +38,35 @@ Sets a new `command` with a `listener` to the collection.
 voix.setCommand('play', playVideo);
 ```
 
-### voix.removeCommand(command, listener)
+### Voix#removeCommand(command, listener)
 Removes a given `command` or its `listener` from the collection.
 - `command` - A given `command` to remove.
 - `listener` [optional] - A given `listener` to remove.
 
 ```js
-voix.removeCommand('play', listener);
+voix.removeCommand('play', playVideo);
 
 // or
 
-scrolling.removeCommand('play');
+voix.removeCommand('play');
 ```
 
-### voix.start()
+### Voix#start()
 Starts the recognition.
 
 ```js
 voix.start();
 ```
 
-### voix.stop()
+### Voix#stop()
 Stops the recognition.
 
 ```js
 voix.stop();
 ```
 
-### voix.setLanguage(lang)
-Sets the language of the speech.
-- `lang` - A given `language`.
-
-```js
-voix.setLanguage('es-AR');
-```
-
-### voix.getLanguage()
-Returns the current language of the speech.
-
-```js
-voix.getLanguage(); // returns 'es-AR'
-```
-
 ## Contact
-- Guille Paz (Frontend developer - JavaScript developer | Web standards lover)
+- Guille Paz (Front-end developer | Web standards lover)
 - E-mail: [guille87paz@gmail.com](mailto:guille87paz@gmail.com)
 - Twitter: [@pazguille](http://twitter.com/pazguille)
 - Web: [http://pazguille.me](http://pazguille.me)
