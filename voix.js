@@ -27,7 +27,7 @@
     };
 
     /**
-     * Initializes a new instance of Voix.
+     * Creates a new instance of VoiceRecognition.
      * @function
      * @private
      * @returns {voix}
@@ -50,7 +50,7 @@
     };
 
     /**
-     * Initializes a new instance of Voix.
+     * Binds key events.
      * @function
      * @private
      * @returns {voix}
@@ -76,7 +76,7 @@
     };
 
     /**
-     * Initializes a new instance of Voix.
+     * Transcripts commands.
      * @function
      * @private
      * @returns {voix}
