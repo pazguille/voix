@@ -2,6 +2,10 @@
 
 A JavaScript library to add voice commands to your sites, apps or games.
 
+It's cross-browser compatible:
+
+- Chrome
+
 ## Installation
 
     $ component install pazguille/voix
