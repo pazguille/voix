@@ -39,7 +39,7 @@
 
         this._recognition.continuous = true;
         this._recognition.interimResults = false;
-        this._recognition.lang = 'es-AR';
+        this._recognition.lang = 'en-US';
         this._recognition.maxAlternatives = 1;
 
         this._recognition.onresult = undefined;
