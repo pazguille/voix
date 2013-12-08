@@ -4,38 +4,34 @@
     var VoiceRecognition = window.webkitSpeechRecognition;
 
     /**
-     * Description
-     * @param
-     * @returns
+     * Voix Constructor.
+     * @constructor
+     * @returns {voix} Returns a new instance of Voix.
      */
     function Voix() {
         this.initialize();
     }
 
+    /**
+     * Initializes a new instance of Voix.
+     * @function
+     * @returns {voix} Returns a new instance of Voix.
+     */
     Voix.prototype.initialize = function () {
-
-        var that = this,
-            keypress = false;
 
         this._collection = {};
         this._createRecognition();
-
-        document.addEventListener('keydown', function (eve) {
-            if (!keypress && eve.keyCode === 86) {
-                that.start();
-                keypress = true;
-            }
-        });
-
-        document.addEventListener('keyup', function (eve) {
-            if (keypress && eve.keyCode === 86) {
-                keypress = false;
-            }
-        });
+        this._bindKeyEvents();
 
         return this;
     };
 
+    /**
+     * Initializes a new instance of Voix.
+     * @function
+     * @private
+     * @returns {voix}
+     */
     Voix.prototype._createRecognition = function () {
         var that = this;
 
@@ -53,7 +49,39 @@
         return this;
     };
 
-    Voix.prototype.result = function (eve) {
+    /**
+     * Initializes a new instance of Voix.
+     * @function
+     * @private
+     * @returns {voix}
+     */
+    Voix.prototype._bindKeyEvents = function () {
+        var that = this,
+            keypress = false;
+
+        document.addEventListener('keydown', function (eve) {
+            if (!keypress && eve.keyCode === 86) {
+                that.start();
+                keypress = true;
+            }
+        });
+
+        document.addEventListener('keyup', function (eve) {
+            if (keypress && eve.keyCode === 86) {
+                keypress = false;
+            }
+        });
+
+        return this;
+    };
+
+    /**
+     * Initializes a new instance of Voix.
+     * @function
+     * @private
+     * @returns {voix}
+     */
+    Voix.prototype._result = function (eve) {
         this.stop();
 
         var that = this,
@@ -68,7 +96,7 @@
 
             if (eve.results[i].isFinal) {
                 command = eve.results[i][0].transcript.replace(/^\s+|\s+$/g, '');
-                console.log(command);
+
                 if (that._collection[command]) {
                     listeners = that._collection[command].listeners,
                     lenListeners = listeners.length;
@@ -82,6 +110,14 @@
         }
     };
 
+    /**
+     * Sets a new command with a listener to the collection.
+     * @memberof! Voix.prototype
+     * @function
+     * @param {String} [command] - A given command.
+     * @param {Funtion} listener - A given listener.
+     * @returns {voix}
+     */
     Voix.prototype.setCommand = function (command, listener) {
         if (this._collection[command] === undefined) {
             this._collection[command] = {
@@ -94,6 +130,14 @@
         return this;
     };
 
+    /**
+     * Rmoves a given command or its listener from the collection.
+     * @memberof! Voix.prototype
+     * @function
+     * @param {String} [command] - A given command.
+     * @param {Funtion} listener - A given listener.
+     * @returns {voix}
+     */
     Voix.prototype.removeCommand = function (command, listener) {
         var listeners = this._collection[command].listeners,
             i = 0,
@@ -115,23 +159,48 @@
         return this;
     };
 
-    Voix.prototype.getLang = function () {
+    /**
+     * Returns the current language of the speech.
+     * @memberof! Voix.prototype
+     * @function
+     * @returns {voix}
+     */
+    Voix.prototype.getLanguage = function () {
         return this.recognition.lang;
     };
 
-    Voix.prototype.setLang = function (lang) {
+    /**
+     * Sets the language of the speech.
+     * @memberof! Voix.prototype
+     * @function
+     * @param {String} [lang] - A given language.
+     * @returns {voix}
+     */
+    Voix.prototype.setLanguage = function (lang) {
         this._recognition.lang = lang;
     };
 
+    /**
+     * Starts the recognition.
+     * @memberof! Voix.prototype
+     * @function
+     * @returns {voix}
+     */
     Voix.prototype.start = function () {
         var that = this;
         this._recognition.onresult = function (eve) {
-            that.result.call(that, eve);
+            that._result.call(that, eve);
         };
 
         return this;
     };
 
+    /**
+     * Stops the recognition.
+     * @memberof! Voix.prototype
+     * @function
+     * @returns {voix}
+     */
     Voix.prototype.stop = function () {
         this._recognition.onresult = undefined;
 
