@@ -6,9 +6,11 @@
     /**
      * Voix Constructor.
      * @constructor
+     * @params {String} lang - A given language.
      * @returns {voix} Returns a new instance of Voix.
      */
-    function Voix() {
+    function Voix(lang) {
+        this._lang = lang;
         this.initialize();
     }
 
@@ -33,13 +35,12 @@
      * @returns {voix}
      */
     Voix.prototype._createRecognition = function () {
-        var that = this;
 
         this._recognition = new VoiceRecognition();
 
         this._recognition.continuous = true;
         this._recognition.interimResults = false;
-        this._recognition.lang = 'en-US';
+        this._recognition.lang = this._lang || 'en-US';
         this._recognition.maxAlternatives = 1;
 
         this._recognition.onresult = undefined;
@@ -95,10 +96,11 @@
         for (i; i < len; i += 1) {
 
             if (eve.results[i].isFinal) {
-                command = eve.results[i][0].transcript.replace(/^\s+|\s+$/g, '');
+                command = eve.results[i][0].transcript.replace(/^\s+|\s+$/g, '').toLowerCase();
+                console.log(command);
 
                 if (that._collection[command]) {
-                    listeners = that._collection[command].listeners,
+                    listeners = that._collection[command].listeners;
                     lenListeners = listeners.length;
 
                     for (j; j < lenListeners; j += 1) {
@@ -166,7 +168,7 @@
      * @returns {voix}
      */
     Voix.prototype.getLanguage = function () {
-        return this.recognition.lang;
+        return this._recognition.lang;
     };
 
     /**
@@ -213,16 +215,16 @@
     // AMD suppport
     if (typeof window.define === 'function' && window.define.amd !== undefined) {
         window.define('Voix', [], function () {
-            return new Voix();
+            return Voix;
         });
 
     // CommonJS suppport
     } else if (typeof module !== 'undefined' && module.exports !== undefined) {
-        module.exports = new Voix();
+        module.exports = Voix;
 
     // Default
     } else {
-        window.voix = new Voix();
+        window.Voix = Voix;
     }
 
 }(this));
