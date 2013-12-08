@@ -2,7 +2,7 @@
   "name": "voix",
   "repo": "pazguille/voix",
   "description": "A JavaScript library to add voice commands to your sites, apps or games.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Guille Paz <guille87paz@gmail.com>",
   "twitter": "@pazguille",
   "keywords": [
