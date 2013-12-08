@@ -97,7 +97,6 @@
 
             if (eve.results[i].isFinal) {
                 command = eve.results[i][0].transcript.replace(/^\s+|\s+$/g, '').toLowerCase();
-                console.log(command);
 
                 if (that._collection[command]) {
                     listeners = that._collection[command].listeners;
