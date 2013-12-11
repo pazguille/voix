@@ -2,9 +2,7 @@
 
 A JavaScript library to add voice commands to your sites, apps or games.
 
-It's cross-browser compatible:
-
-- Chrome
+**NOTE:** At this time, this library is only compatible with Google Chrome.
 
 ## Installation
 
